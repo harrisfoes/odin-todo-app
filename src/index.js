@@ -1,4 +1,4 @@
-import {Task} from "./todoParts.js";
+import { Task } from "./todoParts.js";
 
 console.log("bahog lubot")
 
