@@ -39,8 +39,7 @@ export class Project {
         this.name = name;
     }
 
-    addTask = (title,description,dueDate,priority) => {
-        const task = new Task(title,description,dueDate,priority);
+    addTask = (task) => {
         this.taskList.push(task);
     }
 
@@ -59,7 +58,23 @@ export class Project {
         this.name = newName;
     }
      
-    completeTask = (index) => {
-        this.taskList[index].completeTask();
+}
+
+export class ProjectController{
+    constructor(name){
+        this.name = name;
+        this.projectList = [];
     }
+
+    addProject = (project) => {
+        this.projectList.push(project);
+    }
+
+    deleteProjet = (projectIndex) => {
+        //remove task based on index
+        this.projectList = this.projectList.filter(index => {
+            return index = projectIndex;
+        });
+    }
+
 }
