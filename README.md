@@ -40,14 +40,21 @@ Tasklist:
  [x] JSON functions stringify and parse
  [x] implement storage on the local storage
  [x] implement retrieval on the local storage
+[ ] UI
+ [x] Integrate css style
+ [x] create navbar, sidebar, contentbar
+[ ] Integration
+ -- the project will have one default project so let's start on that
+ [x] create projectController object with default project called Inbox
+[ ] Add tasks for inbox
+ [ ] create table for tasks?
+[ ] Project creation
+ [ ] add button that creates an input type
+ [ ] implement and store input type projects
+ [ ] check storage functions, if empty, create it -- later
+[ ] Open dialog box with form
 [ ] Using date-fns
  [ ] Learn about date function -- toDate, isToday, isThisWeek, subDays
  [ ] install and use with webpack
  [ ] Integrate it into the duedate
  -----delayed due to UI things
-[ ] UI
- [x] Integrate css style
- [x] create navbar, sidebar, contentbar
-[ ] Project creation
-[ ] Add tasks
-[ ] Open dialog box with form

@@ -1,4 +1,5 @@
 import { Task, Project, ProjectController } from "./todoParts.js";
+import { Storage } from "./storage.js";
 import { format } from "date-fns";
 
 const task1 = new Task("Eat food", "eat the foot today", "09/22/2023", "Urgent");
@@ -110,3 +111,26 @@ localStorage.setItem("harrisTodo", JSON.stringify(appController));
 const date = new Date();
 console.log(date);
 console.log(format(date, 'yyyy-MM-dd'));
+
+const storage = new Storage("todoApp");
+
+if(storage.containsStorage("todoApp")){
+    console.log("contains storage!");
+}
+
+//start of todo app
+const todoApp = new ProjectController("todoApp");
+//default project
+todoApp.addProject("Inbox");
+storage.storeObject(todoApp);
+
+const addProject = document.querySelector('.add-button');
+console.log(addProject);
+
+addProject.addEventListener('submit', addButton);
+
+function addButton(evt){
+    evt.preventDefault();
+    console.log("consoleme");
+    alert("123l");
+}
