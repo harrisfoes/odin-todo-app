@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&family=Martel&family=Montserrat&display=swap');
+
+:root {
+    --black: #222831;
+    --space: #393E46;
+    --teal: #00ADB5;
+    --grey: #EEEEEE;
+}
+
+body {
+    font-family: 'Martel', sans-serif;
+    background: var(--grey);
+    color: var(--space);
+    margin: 0;
+    padding: 0;
+}
+
+.banner {
+    display:flex;
+    background: var(--black);
+    color: var(--teal);
+    font-size: 1.2rem;
+    height:12vh;
+    width:100%;
+}
+
+.banner-title {
+    margin-left:5vw;
+}
+
+.content {
+    display:flex;
+}
+
+.project-board {
+    width:30%;
+    height:88vh;
+    background: var(--space);
+    color: var(--grey);
+}
+
+.inbox, .projects {
+    margin-left:5vw;
+}
+
+.todo-board {
+    width:80%;
+
+
+}
+
+.todo-board h2{
+    margin-left:30px;
+}

@@ -29,18 +29,25 @@ Tasklist:
  [x] enable viewing
  [x] enable edits
  [x] enable setToDone
-[ ] Projects
- [ ] enable viewing
- [ ] enable edits
- [ ] enable deletion from the list
- [ ] enable adding tasks
- [ ] enable deleting tasks
-[ ] Local Storage
- [ ] learn about and try out local storage
- [ ] JSON functions stringify and parse
- [ ] implement storage on the local storage
- [ ] implement retrieval on the local storage
-[ ] Learn about date function
-[ ] Integrate it into the duedate
+[x] Projects
+ [x] enable viewing
+ [x] enable edits
+ [x] enable deletion from the list
+ [x] enable adding tasks
+ [x] enable deleting tasks
+[x] Local Storage
+ [x] learn about and try out local storage
+ [x] JSON functions stringify and parse
+ [x] implement storage on the local storage
+ [x] implement retrieval on the local storage
+[ ] Using date-fns
+ [ ] Learn about date function -- toDate, isToday, isThisWeek, subDays
+ [ ] install and use with webpack
+ [ ] Integrate it into the duedate
+ -----delayed due to UI things
 [ ] UI
- [ ] Integrate css style
+ [x] Integrate css style
+ [x] create navbar, sidebar, contentbar
+[ ] Project creation
+[ ] Add tasks
+[ ] Open dialog box with form

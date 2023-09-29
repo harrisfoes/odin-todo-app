@@ -70,10 +70,10 @@ export class ProjectController{
         this.projectList.push(project);
     }
 
-    deleteProjet = (projectIndex) => {
+    deleteProject = (projectIndex) => {
         //remove task based on index
         this.projectList = this.projectList.filter(index => {
-            return index = projectIndex;
+            return index != projectIndex;
         });
     }
 

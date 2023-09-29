@@ -1,7 +1,5 @@
 import { Task, Project, ProjectController } from "./todoParts.js";
-
-console.log("bahog lubot")
-
+import { format } from "date-fns";
 
 const task1 = new Task("Eat food", "eat the foot today", "09/22/2023", "Urgent");
 task1.viewTaskDetails();
@@ -101,3 +99,14 @@ appController.addProject(project1);
 console.log(appController);
 
 localStorage.setItem("harrisTodo", JSON.stringify(appController));
+
+/* data-fns */
+// formattin a date in mm-d-y
+// collecting a date using a widget
+
+// toDate, isToday, isThisWeek, subDays
+// testing date new date
+
+const date = new Date();
+console.log(date);
+console.log(format(date, 'yyyy-MM-dd'));
