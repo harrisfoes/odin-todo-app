@@ -12,7 +12,6 @@
 </head>
 
 <body>
-    <script src="main.js"></script>
 
     <div class="banner">
         <h1 class="banner-title">
@@ -25,14 +24,18 @@
 
         <div class="project-board">
             <div class="inbox">
-                <h2><i class="fa fa-id-card" aria-hidden="true"></i> Inbox</h2>
-                <ul>
-                    <li>Eat breakfast</li>
-                    <li>Take a bath</li>
-                </ul>
+                <i class="fa fa-id-card" aria-hidden="true"></i> Inbox
             </div>
+
             <div class="projects">
-                <h2>Projects</h2> <button><i class="fa fa-plus" aria-hidden="true"></i></button>
+                <h3>Projects</h3>
+                <ul class="project-list">
+                    <li class="project-item">First Project <button><i class="fa-solid fa-x"></i></button></li>
+                </ul>
+                <form action="#">
+                    <input type="text" class="addproject" placeholder="Add Project" required>
+                    <button class="add-button" type="button"><i class="fa fa-plus" aria-hidden="true"></i> Add</button>
+                </form>
             </div>
         </div>
 
@@ -44,5 +47,5 @@
 
 
 </body>
-
+    <script src="main.js"></script>
 </html>
