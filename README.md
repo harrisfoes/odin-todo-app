@@ -43,15 +43,15 @@ Tasklist:
 [ ] UI
  [x] Integrate css style
  [x] create navbar, sidebar, contentbar
-[ ] Integration
- -- the project will have one default project so let's start on that
- [x] create projectController object with default project called Inbox
+ [ ] Project UI
+  [x] add button that creates an input type
+  [x] create projectController object with default project called Inbox
+  [ ] add project list based on storage
+ [ ] Project creation
+  [ ] implement and store input type projects
+  [ ] check storage functions, if empty, create it -- later
 [ ] Add tasks for inbox
  [ ] create table for tasks?
-[ ] Project creation
- [ ] add button that creates an input type
- [ ] implement and store input type projects
- [ ] check storage functions, if empty, create it -- later
 [ ] Open dialog box with form
 [ ] Using date-fns
  [ ] Learn about date function -- toDate, isToday, isThisWeek, subDays

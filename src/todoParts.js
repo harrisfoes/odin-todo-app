@@ -64,10 +64,13 @@ export class ProjectController{
     constructor(name){
         this.name = name;
         this.projectList = [];
+        this.currentProject = name; //tracks the currently selected project
+        this.projectList.push("Inbox");
     }
 
     addProject = (project) => {
         this.projectList.push(project);
+        this.currentProject = project;
     }
 
     deleteProject = (projectIndex) => {
@@ -75,6 +78,14 @@ export class ProjectController{
         this.projectList = this.projectList.filter(index => {
             return index != projectIndex;
         });
+    }
+
+    getCurrentProject = () => {
+        return this.currentProject;
+    }
+
+    setCurrentProject = (project) => {
+        this.currentProject = project;
     }
 
 }

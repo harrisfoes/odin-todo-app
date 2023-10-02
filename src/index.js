@@ -1,7 +1,9 @@
 import { Task, Project, ProjectController } from "./todoParts.js";
 import { Storage } from "./storage.js";
 import { format } from "date-fns";
+import { UI } from "./storage.js";
 
+/*
 const task1 = new Task("Eat food", "eat the foot today", "09/22/2023", "Urgent");
 task1.viewTaskDetails();
 
@@ -20,13 +22,6 @@ task1.viewTaskDetails();
 task1.setPriority("Normal");
 task1.viewTaskDetails();
 
-/*
---test localstorage
---test localstorage for objects
-
---test localstorage for arrays
---test localstorage for arrays of objects
-*/
 
 //works
 localStorage.setItem("myCat", "Tom");
@@ -108,9 +103,11 @@ localStorage.setItem("harrisTodo", JSON.stringify(appController));
 // toDate, isToday, isThisWeek, subDays
 // testing date new date
 
+/*
 const date = new Date();
 console.log(date);
 console.log(format(date, 'yyyy-MM-dd'));
+*/
 
 const storage = new Storage("todoApp");
 
@@ -118,19 +115,27 @@ if(storage.containsStorage("todoApp")){
     console.log("contains storage!");
 }
 
+//initialize if no localStorage yet
 //start of todo app
 const todoApp = new ProjectController("todoApp");
 //default project
 todoApp.addProject("Inbox");
 storage.storeObject(todoApp);
+//
 
 const addProject = document.querySelector('.add-button');
+const newProjectName = document.querySelector('.new-project-name');
+
 console.log(addProject);
 
-addProject.addEventListener('submit', addButton);
+addProject.addEventListener('click', addButton);
 
 function addButton(evt){
     evt.preventDefault();
     console.log("consoleme");
-    alert("123l");
+    alert(newProjectName.value);
+
+    todoApp.addProject(newProjectName.value);
+    storage.storeObject(todoApp);
 }
+
