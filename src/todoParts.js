@@ -54,9 +54,15 @@ export class Project {
         this.taskList.forEach((task) => task.viewTaskDetails());
     }
 
+    getTaskList = () => {
+        return this.taskList;
+    }
+
     setProjectName = (newName) => {
         this.name = newName;
     }
+
+    getName = () => { return this.name; }
      
 }
 
@@ -64,13 +70,13 @@ export class ProjectController{
     constructor(name){
         this.name = name;
         this.projectList = [];
-        this.currentProject = name; //tracks the currently selected project
-        this.projectList.push("Inbox");
+        this.projectList.push(new Project("Inbox"));
+        this.currentProject = "Inbox"; //tracks the currently selected project
     }
 
-    addProject = (project) => {
-        this.projectList.push(project);
-        this.currentProject = project;
+    addProject = (projectName) => {
+        const newProj = new Project(projectName);
+        this.projectList.push(newProj);
     }
 
     deleteProject = (projectIndex) => {
@@ -86,6 +92,18 @@ export class ProjectController{
 
     setCurrentProject = (project) => {
         this.currentProject = project;
+    }
+
+    containsProject = (name) => { 
+        return this.projectList.some((element) => element.getName() === name);
+    }
+
+    getProjects = () => {
+        return this.projectList;
+    }
+
+    setProjects = (newProjectList) => {
+        this.projectList = newProjectList;
     }
 
 }

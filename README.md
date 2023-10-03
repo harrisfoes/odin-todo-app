@@ -49,7 +49,8 @@ Tasklist:
   [ ] add project list based on storage
  [ ] Project creation
   [ ] implement and store input type projects
-  [ ] check storage functions, if empty, create it -- later
+  [x] check storage functions, if empty, create it -- later
+
 [ ] Add tasks for inbox
  [ ] create table for tasks?
 [ ] Open dialog box with form
@@ -58,3 +59,15 @@ Tasklist:
  [ ] install and use with webpack
  [ ] Integrate it into the duedate
  -----delayed due to UI things
+
+
+ [input -> retrieve project first]
+ [x] add project working on button click
+  [x] create form into function
+  [x] create buttons into function
+  [x] button now stores projects
+  [x] localstorage now retrieves as object projectController
+  [x] localstorge now retrieves project
+  [ ] validate = no same name projects
+  [ ] display now retrieves projects
+  [ ] localstorage now retrieves tasks --later

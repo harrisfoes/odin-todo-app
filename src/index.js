@@ -1,7 +1,7 @@
 import { Task, Project, ProjectController } from "./todoParts.js";
 import { Storage } from "./storage.js";
 import { format } from "date-fns";
-import { UI } from "./storage.js";
+import { UI } from "./uiController.js";
 
 /*
 const task1 = new Task("Eat food", "eat the foot today", "09/22/2023", "Urgent");
@@ -109,6 +109,8 @@ console.log(date);
 console.log(format(date, 'yyyy-MM-dd'));
 */
 
+/*
+
 const storage = new Storage("todoApp");
 
 if(storage.containsStorage("todoApp")){
@@ -138,4 +140,9 @@ function addButton(evt){
     todoApp.addProject(newProjectName.value);
     storage.storeObject(todoApp);
 }
+*/
 
+const ui = new UI;
+//ui.initStorage();
+//ui.displayProjectBoard();
+document.addEventListener('DOMContentLoaded', ui.init)

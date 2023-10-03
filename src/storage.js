@@ -9,10 +9,15 @@ export class Storage {
 
     retrieveStorage = () => {
 
-        if(!containsStorage()){
+        if(!this.containsStorage()){
             alert("retrieveStorage error: storage doesn't exist!")
         }
-            return localData = localStorage.getItem(JSON.parse(this.storageId)); 
+
+        console.log(this.storageId);
+        const localData = localStorage.getItem(this.storageId); 
+        console.log(localData);
+        console.log(JSON.parse(localData));
+        return JSON.parse(localData);
     }
 
     storeObject = (object) => {

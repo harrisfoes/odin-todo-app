@@ -39,7 +39,7 @@ body {
     color: var(--grey);
 }
 
-.inbox, .projects {
+.inbox, .project-title, form {
     margin-left:5vw;
 }
 
@@ -52,7 +52,8 @@ body {
 }
 
 .project-item:hover, .inbox:hover{
-    background:var(--black);
+    background:var(--teal);
+    color:var(--grey)
 }
 
 .inbox {
