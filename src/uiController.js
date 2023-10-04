@@ -3,14 +3,13 @@ import { Storage } from "./storage.js";
 
 export class UI {
     constructor() {
-        this.app = new ProjectController;
+        this.app = new ProjectController("KulamBee");
         this.storage = new Storage("todoApp");
     }
 
-
     init = () => {
         this.initStorage();
-        this.initProjectBoard();
+        this.updateProjectBoard();
     }
 
     initStorage = () => {
@@ -18,8 +17,7 @@ export class UI {
         if (this.storage.containsStorage()) {
             console.log("storage found!");
             //this should be converted to ProjectController object
-            const todoList = Object.assign(new ProjectController, this.storage.retrieveStorage());
-
+            const todoList = Object.assign(new ProjectController("KulamBee"), this.storage.retrieveStorage());
             const todoProjects = todoList.getProjects().map((projects) => Object.assign(new Project(), projects))
             todoList.setProjects(todoProjects);
 
@@ -36,16 +34,28 @@ export class UI {
         this.storage.storeObject(this.app);
     }
 
-    initProjectBoard = () => {
-        console.log("projectbord");
+    clearProjectBoard = () => { 
+        const projectBoard = document.querySelector('.project-board');
+        projectBoard.innerHTML = '';
+    }
+
+    updateProjectBoard = () => {
+        
         const projectBoard = document.querySelector('.project-board');
 
         projectBoard.appendChild(this.displayProjectList());
         projectBoard.appendChild(this.createProjectForm());
 
+        //activate add project button
         const addProjectBtn = document.querySelector('.add-button');
         addProjectBtn.addEventListener("click", this.addNewProject);
 
+        const projectBtns = document.querySelectorAll('.project-btn');
+        console.log(projectBtns);
+
+        projectBtns.forEach((button) => {
+            button.addEventListener('click', this.setAsCurrentProject);
+        });
     }
 
     displayProjectList = () => {
@@ -54,21 +64,17 @@ export class UI {
         title.textContent = "Projects";
 
         //inbox div
-        const inboxBtn = document.createElement('button');
-        inboxBtn.classList.add('inbox');
+        const projectList = document.createElement('ul');
+        projectList.classList.add('projects');
 
-        const card = document.createElement('i');
-        card.classList.add('fa');
-        card.classList.add('fa-id-card');
-        card.setAttribute("aria-hidden", true);
+        //generate project buttons
+        const projectBtns = this.app.getProjects().forEach( (project, index) =>  projectList.appendChild(this.displayProjects(project.getName(), index)));
+        console.log(projectBtns);
+        console.log(projectList);
+        //projectList.appendChild(projectBtns);
 
-        const cardSpan = document.createElement('span');
-        cardSpan.textContent = "Inbox";
-
-        inboxBtn.appendChild(card);
-        inboxBtn.appendChild(cardSpan);
-
-        return inboxBtn;
+        console.log(projectList);
+        return projectList;
     }
 
     createProjectForm = () => {
@@ -94,11 +100,9 @@ export class UI {
         projectAddBtn.appendChild(plusIcon);
         projectAddBtn.appendChild(btnSpan);
 
-
         form.appendChild(projectInput);
         form.appendChild(projectAddBtn);
         
-
         return form;
     }
 
@@ -107,8 +111,77 @@ export class UI {
 
         const newProjectName = document.querySelector('.project-item').value;
 
+        if(newProjectName == ''){
+            alert("project name cannot be empty");
+            return;
+        }
+
         this.app.addProject(newProjectName);
         this.saveStorage();
+        this.clearProjectBoard();
+        this.updateProjectBoard();
+    }
+
+    displayProjects(projectName, projectIndex) {
+
+        //list element
+        const li = document.createElement('li');
+        li.classList.add('project-li');
+
+        const leftDiv = document.createElement('div');
+        leftDiv.classList.add('left-div');
+
+        //button element
+        const btn = document.createElement('button');
+        btn.classList.add('project-btn');
+        btn.dataset.index = projectIndex;
+        //project icon
+        const card = document.createElement('i');
+        card.classList.add('fa');
+        card.classList.add('fa-id-card');
+        card.setAttribute("aria-hidden", true);
+        //project text
+        const cardSpan = document.createElement('span');
+        cardSpan.classList.add('project-name');
+        cardSpan.textContent = projectName;
+
+        //const rightDiv 
+        const rightDiv = document.createElement('div');
+        rightDiv.classList.add('right-div');        
+
+        //xbutton element
+        const xbtn = document.createElement('button');
+        xbtn.classList.add('delete-p-btn');
+        xbtn.dataset.index = projectIndex;
+        //project icon
+        const close = document.createElement('i');
+        close.classList.add('fas');
+        close.classList.add('fa-times');
+        close.setAttribute("aria-hidden", true);
+
+        xbtn.appendChild(close);
+
+        btn.appendChild(card);
+        btn.appendChild(cardSpan);
+
+        leftDiv.appendChild(btn);
+        rightDiv.appendChild(xbtn);
+
+        li.appendChild(leftDiv);
+        li.appendChild(rightDiv);
+
+        console.log(li);
+
+        return li;
+    }
+
+    setAsCurrentProject = (evt) => {
+
+        const index = evt.target.closest("button").dataset.index;
+
+        this.app.setCurrentProject(index);
+        this.saveStorage();
+        console.log(this.app);
     }
 
 }

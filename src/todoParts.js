@@ -71,7 +71,7 @@ export class ProjectController{
         this.name = name;
         this.projectList = [];
         this.projectList.push(new Project("Inbox"));
-        this.currentProject = "Inbox"; //tracks the currently selected project
+        this.currentProject = this.projectList[0].getName(); //tracks the currently selected project
     }
 
     addProject = (projectName) => {
@@ -90,8 +90,8 @@ export class ProjectController{
         return this.currentProject;
     }
 
-    setCurrentProject = (project) => {
-        this.currentProject = project;
+    setCurrentProject = (index) => {
+        this.currentProject = this.projectList[index].getName();
     }
 
     containsProject = (name) => { 
@@ -104,6 +104,10 @@ export class ProjectController{
 
     setProjects = (newProjectList) => {
         this.projectList = newProjectList;
+    }
+
+    getName = () => {
+        return this.name;
     }
 
 }

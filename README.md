@@ -47,9 +47,16 @@ Tasklist:
   [x] add button that creates an input type
   [x] create projectController object with default project called Inbox
   [ ] add project list based on storage
- [ ] Project creation
-  [ ] implement and store input type projects
+ [x] Project creation
+  [x] implement and store input type projects
   [x] check storage functions, if empty, create it -- later
+ [x] add project working on button click
+  [x] create form into function
+  [x] create buttons into function
+  [x] button now stores projects
+  [x] localstorage now retrieves as object projectController
+  [x] localstorge now retrieves project
+  [ ] validate = no same name projects
 
 [ ] Add tasks for inbox
  [ ] create table for tasks?
@@ -60,14 +67,3 @@ Tasklist:
  [ ] Integrate it into the duedate
  -----delayed due to UI things
 
-
- [input -> retrieve project first]
- [x] add project working on button click
-  [x] create form into function
-  [x] create buttons into function
-  [x] button now stores projects
-  [x] localstorage now retrieves as object projectController
-  [x] localstorge now retrieves project
-  [ ] validate = no same name projects
-  [ ] display now retrieves projects
-  [ ] localstorage now retrieves tasks --later
