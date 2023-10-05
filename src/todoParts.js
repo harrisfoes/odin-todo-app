@@ -31,6 +31,17 @@ export class Task {
         this.priority = newPriority;
     }
 
+    getTitle = () => {
+        return this.title;
+    }
+
+    getDescription = () => {
+        return this.description;
+    }
+
+    getDueDate = () => {
+        return this.dueDate;
+    }
 }
 
 export class Project {
@@ -58,6 +69,10 @@ export class Project {
         return this.taskList;
     }
 
+    setTasks = (newTaskList) => {
+        this.taskList = newTaskList;
+    }
+
     setProjectName = (newName) => {
         this.name = newName;
     }
@@ -71,7 +86,7 @@ export class ProjectController{
         this.name = name;
         this.projectList = [];
         this.projectList.push(new Project("Inbox"));
-        this.currentProject = this.projectList[0].getName(); //tracks the currently selected project
+        this.currentProjectIndex = 0; //tracks the currently selected project
     }
 
     addProject = (projectName) => {
@@ -91,12 +106,20 @@ export class ProjectController{
         console.log(this.projectList);
     }
 
-    getCurrentProject = () => {
-        return this.currentProject;
+    getProject = (index) => {
+        return this.projectList[index];
     }
 
-    setCurrentProject = (index) => {
-        this.currentProject = this.projectList[index].getName();
+    getCurrentProject = () => {
+        return this.projectList[this.currentProjectIndex];
+    }
+
+    getCurrentProjectIndex = () => {
+        return this.currentProjectIndex;
+    }
+
+    setCurrentProjectIndex = (index) => {
+        this.currentProjectIndex = index;
     }
 
     containsProject = (name) => { 

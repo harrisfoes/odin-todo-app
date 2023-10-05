@@ -68,14 +68,21 @@ Tasklist:
     [x] mockup how display will look like
      [x] mockup for task listing
      [x] mockup for inputs
-    [ ] retrieve tasks based on currentProject
-    [ ] create input display with add
-    [ ] figure out dates
-  [ ] create table for tasks?
+    [x] create input display with add
+    [x] record tasks on inbox for now
+    [x] figure out dates
+  [ ] UI for 
+    [x] retrieve tasks based on currentProject
+    [x] parse tasks from localStorage
+    [x] title
+    [x] desc
+    [x] due
+    [x] edit btn
+    [x] urgent btn
+    [x] delete btn
+    [ ] edit functionality
+    [ ] urgent functionality
+    [ ] delete functionality
   [ ] Open dialog box with form
-  [ ] Using date-fns
   [ ] Learn about date function -- toDate, isToday, isThisWeek, subDays
-  [ ] install and use with webpack
-  [ ] Integrate it into the duedate
- -----delayed due to UI things
 
