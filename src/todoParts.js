@@ -81,9 +81,14 @@ export class ProjectController{
 
     deleteProject = (projectIndex) => {
         //remove task based on index
-        this.projectList = this.projectList.filter(index => {
-            return index != projectIndex;
+        const projectName = this.projectList[projectIndex].getName();
+        
+        this.projectList = this.projectList.filter(name => {
+            return name.getName() != projectName;
         });
+
+        console.log(projectName);
+        console.log(this.projectList);
     }
 
     getCurrentProject = () => {
@@ -95,7 +100,7 @@ export class ProjectController{
     }
 
     containsProject = (name) => { 
-        return this.projectList.some((element) => element.getName() === name);
+        return this.projectList.some((element) => element.getName().toLowerCase() === name.toLowerCase());
     }
 
     getProjects = () => {

@@ -43,10 +43,10 @@ Tasklist:
 [ ] UI
  [x] Integrate css style
  [x] create navbar, sidebar, contentbar
- [ ] Project UI
+ [x] Project UI
   [x] add button that creates an input type
   [x] create projectController object with default project called Inbox
-  [ ] add project list based on storage
+  [x] add project list based on storage
  [x] Project creation
   [x] implement and store input type projects
   [x] check storage functions, if empty, create it -- later
@@ -56,14 +56,26 @@ Tasklist:
   [x] button now stores projects
   [x] localstorage now retrieves as object projectController
   [x] localstorge now retrieves project
-  [ ] validate = no same name projects
+  [x] setting current project data
+  [x] validate = no same name projects
+  [x] enable deletion of buttons/projects
+  [x] highlight the button which is current project
+    [x] when clicked, remove old highlight
+    [x] highlight current project by adding new class
+    
 
-[ ] Add tasks for inbox
- [ ] create table for tasks?
-[ ] Open dialog box with form
-[ ] Using date-fns
- [ ] Learn about date function -- toDate, isToday, isThisWeek, subDays
- [ ] install and use with webpack
- [ ] Integrate it into the duedate
+- [ ] Add tasks for inbox
+    [x] mockup how display will look like
+     [x] mockup for task listing
+     [x] mockup for inputs
+    [ ] retrieve tasks based on currentProject
+    [ ] create input display with add
+    [ ] figure out dates
+  [ ] create table for tasks?
+  [ ] Open dialog box with form
+  [ ] Using date-fns
+  [ ] Learn about date function -- toDate, isToday, isThisWeek, subDays
+  [ ] install and use with webpack
+  [ ] Integrate it into the duedate
  -----delayed due to UI things
 

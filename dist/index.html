@@ -28,6 +28,27 @@
 
         <div class="todo-board">
             <h2><i class="fa fa-list" aria-hidden="true"></i> To do list</h2>
+            <ul class="todo-listing">
+                <li class="todo-li">
+                    <input type="checkbox" name="todo-check" id="todo-check">
+                    <div class="todo-title">Eat a Sandwich</div>
+                    <div class="todo-desc">Go to the store and eat a sandwich</div>
+                    <div class="todo-date">Due Date: <span class="dd">2022/03/23</span></div>
+                    <div class="todo-status"><i class="fa-regular fa-star"></i></div>
+                    <div class="todo-edit">
+                        <i class="fas fa-edit"></i>
+                    </div>
+                    <div class="todo-delete">
+                        <i class="fa-regular fa-circle-xmark"></i>
+                    </div>
+                </li>
+            </ul>
+            <form>
+                <input type="text" placeholder="Title" required class="todo-newtitle">
+                <input type="text" placeholder="Add a description" required class="todo-newdesc">
+                <input type="date" name="date" id="date" class="todo-newdate">
+                <button>Add Task</button>
+            </form>
         </div>
 
     </div>

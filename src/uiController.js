@@ -46,15 +46,20 @@ export class UI {
         projectBoard.appendChild(this.displayProjectList());
         projectBoard.appendChild(this.createProjectForm());
 
-        //activate add project button
+        //add event listeners for active buttons
         const addProjectBtn = document.querySelector('.add-button');
         addProjectBtn.addEventListener("click", this.addNewProject);
 
-        const projectBtns = document.querySelectorAll('.project-btn');
+        const projectBtns = document.querySelectorAll('.project-li');
         console.log(projectBtns);
 
         projectBtns.forEach((button) => {
             button.addEventListener('click', this.setAsCurrentProject);
+        });
+
+        const deleteProjectBtns = document.querySelectorAll('.delete-p-btn');
+        deleteProjectBtns.forEach((button) => {
+            button.addEventListener('click', this.deleteProject);
         });
     }
 
@@ -112,7 +117,10 @@ export class UI {
         const newProjectName = document.querySelector('.project-item').value;
 
         if(newProjectName == ''){
-            alert("project name cannot be empty");
+            alert("Project name cannot be empty");
+            return;
+        }else if (this.app.containsProject(newProjectName)){
+            alert("Project name already exists");
             return;
         }
 
@@ -122,11 +130,28 @@ export class UI {
         this.updateProjectBoard();
     }
 
+    deleteProject = (evt) => {
+        evt.preventDefault();
+        console.log("here we will delete");
+        const index = evt.target.closest("button").dataset.index;
+
+        if(index == 0){
+            alert("Cannot remove default project: Inbox");
+            return;
+        }
+
+        this.app.deleteProject(index);
+        this.saveStorage();
+        this.clearProjectBoard();
+        this.updateProjectBoard();
+    } 
+
     displayProjects(projectName, projectIndex) {
 
         //list element
         const li = document.createElement('li');
         li.classList.add('project-li');
+        li.dataset.index = projectIndex;
 
         const leftDiv = document.createElement('div');
         leftDiv.classList.add('left-div');
@@ -137,8 +162,8 @@ export class UI {
         btn.dataset.index = projectIndex;
         //project icon
         const card = document.createElement('i');
-        card.classList.add('fa');
-        card.classList.add('fa-id-card');
+        card.classList.add('fa-solid');
+        card.classList.add('fa-table-list');
         card.setAttribute("aria-hidden", true);
         //project text
         const cardSpan = document.createElement('span');
@@ -176,12 +201,17 @@ export class UI {
     }
 
     setAsCurrentProject = (evt) => {
-
-        const index = evt.target.closest("button").dataset.index;
+        console.log(evt.target);
+        const index = evt.target.closest("li").dataset.index;
 
         this.app.setCurrentProject(index);
         this.saveStorage();
-        console.log(this.app);
+        console.log(this.app.getCurrentProject());
+
+        const projectList = document.querySelectorAll('.project-li');
+        projectList.forEach((listItem) => listItem.classList.remove("current-project"));
+        evt.target.closest("li").classList.add("current-project");
+
     }
 
 }
