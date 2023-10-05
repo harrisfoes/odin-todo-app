@@ -109,3 +109,7 @@ body {
     margin:6px;
     border:1px solid var(--teal);
 }
+
+.todo-form input {
+    margin: 4px;
+}
