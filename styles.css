@@ -52,18 +52,27 @@ body {
 }
 
 .project-li:hover, .inbox:hover{
-    background:var(--teal);
+    border:1px solid var(--teal);
     color:var(--grey);
+}
+
+.project-li:active {
+    background: var(--black);
 }
 
 .project-btn {
     padding:4px;
     margin:2px;
-    background: var(--space);
+    background: inherit;
     color: var(--grey);
     font-family: inherit;
-    //border: 0;
+    font-size: inherit;
+    border: 0;
     /*margin-top:30px;*/
+}
+
+.delete-p-btn[data-index="0"]{
+    display:none;
 }
 
 .projects {
@@ -74,4 +83,29 @@ body {
     display:flex;
     justify-content: space-between;
     margin-right: 16px;
+    padding:8px;
+    border-radius:8px;
+}
+
+.project-name {
+    margin-left:8px;
+}
+
+.current-project{
+    color:var(--space);
+    background: var(--black);
+}
+
+.current-project span {
+    font-weight:bold;
+}
+
+.todo-li {
+    display:flex;
+}
+
+.todo-li div{
+    padding:8px;
+    margin:6px;
+    border:1px solid var(--teal);
 }
