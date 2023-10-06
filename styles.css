@@ -7,6 +7,36 @@
     --grey: #EEEEEE;
 }
 
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+input[type=text], input[type=date] {
+    padding:8px;
+    margin:6px;
+    border: 1px solid var(--teal);
+    border-radius:5px;
+    box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+    font-style:inherit;
+    font-family:inherit;
+}
+
+button {
+    margin: 6px;
+    padding: 8px 16px;
+    border-radius:5px;
+    border:0;
+    background: var(--black);
+    color:var(--grey);
+    font-family:inherit;
+    font-weight:bold;
+}
+
+button:active{
+    color:var(--black);
+    background: var(--teal);
+}
+
 body {
     font-family: 'Martel', sans-serif;
     background: var(--grey);
@@ -86,6 +116,12 @@ body {
     display:none;
 }
 
+.delete-p-btn{
+    background:var(--grey);
+    color:var(--black);
+    padding:4px 12px;
+}
+
 .projects {
     list-style-type:none;
 }
@@ -96,6 +132,7 @@ body {
     margin-right: 16px;
     padding:8px;
     border-radius:8px;
+    margin-left:2vw;
 }
 
 .project-name {
@@ -112,17 +149,24 @@ body {
 }
 
 .todo-li {
-    display:flex;
+    max-width: 1200px;
+    display: grid;
+    grid-template-columns: 0.1fr 2fr 4fr 2fr 0.1fr 0.1fr 0.1fr;
 }
 
 .todo-li div{
     padding:8px;
     margin:6px;
-    border:1px solid var(--teal);
+    border:1px solid #ddd;
+    border-radius:5px;
 }
 
 .todo-form input {
     margin: 4px;
+}
+
+h2 span {
+    margin-left:30px;
 }
 
 /*modal*/
@@ -157,4 +201,8 @@ body {
 
   .hidden {
     display:none;
+  }
+
+  .fa-solid.fa-star {
+    color:goldenrod;
   }
