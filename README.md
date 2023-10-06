@@ -25,64 +25,65 @@ All tasks are stored in localStorage.
 # Third milestone - UI
 
 Tasklist:
-[x] Tasks
- [x] enable viewing
- [x] enable edits
- [x] enable setToDone
-[x] Projects
- [x] enable viewing
- [x] enable edits
- [x] enable deletion from the list
- [x] enable adding tasks
- [x] enable deleting tasks
-[x] Local Storage
- [x] learn about and try out local storage
- [x] JSON functions stringify and parse
- [x] implement storage on the local storage
- [x] implement retrieval on the local storage
-[ ] UI
- [x] Integrate css style
- [x] create navbar, sidebar, contentbar
- [x] Project UI
-  [x] add button that creates an input type
-  [x] create projectController object with default project called Inbox
-  [x] add project list based on storage
- [x] Project creation
-  [x] implement and store input type projects
-  [x] check storage functions, if empty, create it -- later
- [x] add project working on button click
-  [x] create form into function
-  [x] create buttons into function
-  [x] button now stores projects
-  [x] localstorage now retrieves as object projectController
-  [x] localstorge now retrieves project
-  [x] setting current project data
-  [x] validate = no same name projects
-  [x] enable deletion of buttons/projects
-  [x] highlight the button which is current project
-    [x] when clicked, remove old highlight
-    [x] highlight current project by adding new class
+- [x] Tasks
+- [x] enable viewing
+- [x] enable edits
+- [x] enable setToDone
+- [x] Projects
+- [x] enable viewing
+- [x] enable edits
+- [x] enable deletion from the list
+- [x] enable adding tasks
+- [x] enable deleting tasks
+- [x] Local Storage
+- [x] learn about and try out local storage
+- [x] JSON functions stringify and parse
+- [x] implement storage on the local storage
+- [x] implement retrieval on the local storage
+- [ ] UI
+- [x] Integrate css style
+- [x] create navbar, sidebar, contentbar
+- [x] Project UI
+- [x] add button that creates an input type
+- [x] create projectController object with default project called Inbox
+- [x] add project list based on storage
+- [x] Project creation
+- [x] implement and store input type projects
+- [x] check storage functions, if empty, create it -- later
+- [x] add project working on button click
+- [x] create form into function
+- [x] create buttons into function
+- [x] button now stores projects
+- [x] localstorage now retrieves as object projectController
+- [x] localstorge now retrieves project
+- [x] setting current project data
+- [x] validate = no same name projects
+- [x] enable deletion of buttons/projects
+- [x] highlight the button which is current project
+- [x] when clicked, remove old highlight
+- [x] highlight current project by adding new class
     
 
 - [ ] Add tasks for inbox
-    [x] mockup how display will look like
-     [x] mockup for task listing
-     [x] mockup for inputs
-    [x] create input display with add
-    [x] record tasks on inbox for now
-    [x] figure out dates
-  [ ] UI for 
-    [x] retrieve tasks based on currentProject
-    [x] parse tasks from localStorage
-    [x] title
-    [x] desc
-    [x] due
-    [x] edit btn
-    [x] urgent btn
-    [x] delete btn
-    [ ] edit functionality
-    [ ] urgent functionality
-    [ ] delete functionality
-  [ ] Open dialog box with form
-  [ ] Learn about date function -- toDate, isToday, isThisWeek, subDays
+ -  [x] mockup how display will look like
+ -  [x] mockup for task listing
+ -  [x] mockup for inputs
+ - [x] create input display with add
+ - [x] record tasks on inbox for now
+ - [x] figure out dates
+ - [ ] UI for project
+ - [x] retrieve tasks based on currentProject
+ - [x] parse tasks from localStorage
+ - [x] title
+ - [x] desc
+ - [x] due
+ - [x] edit btn
+ - [x] urgent btn
+ - [x] delete btn
+ - [ ] edit functionality
+ - [x] urgent functionality
+ - [ ] delete functionality
+ - [ ] check bugs in get/setcurrentProject
+ - [x] Open dialog box with form
+ - [ ] Learn about date function -- toDate, isToday, isThisWeek, subDays
 

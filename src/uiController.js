@@ -24,13 +24,13 @@ export class UI {
             const todoProjects = todoList.getProjects().map((projects) => Object.assign(new Project(), projects))
             todoList.setProjects(todoProjects);
 
-            todoList.getProjects().forEach((project) => project.setTasks( 
+            todoList.getProjects().forEach((project) => project.setTasks(
                 project.getTaskList().map((tasks) => Object.assign(new Task(), tasks)))
             );
 
             this.app = todoList;
             console.log(this.app);
-            
+
         }
         else {
             this.saveStorage();
@@ -41,13 +41,13 @@ export class UI {
         this.storage.storeObject(this.app);
     }
 
-    clearProjectBoard = () => { 
+    clearProjectBoard = () => {
         const projectBoard = document.querySelector('.project-board');
         projectBoard.innerHTML = '';
     }
 
     updateProjectBoard = () => {
-        
+
         const projectBoard = document.querySelector('.project-board');
 
         projectBoard.appendChild(this.displayProjectList());
@@ -80,7 +80,7 @@ export class UI {
         projectList.classList.add('projects');
 
         //generate project buttons
-        const projectBtns = this.app.getProjects().forEach( (project, index) =>  projectList.appendChild(this.displayProjects(project.getName(), index)));
+        const projectBtns = this.app.getProjects().forEach((project, index) => projectList.appendChild(this.displayProjects(project.getName(), index)));
         console.log(projectBtns);
         console.log(projectList);
         //projectList.appendChild(projectBtns);
@@ -114,7 +114,7 @@ export class UI {
 
         form.appendChild(projectInput);
         form.appendChild(projectAddBtn);
-        
+
         return form;
     }
 
@@ -123,10 +123,10 @@ export class UI {
 
         const newProjectName = document.querySelector('.project-item').value;
 
-        if(newProjectName == ''){
+        if (newProjectName == '') {
             alert("Project name cannot be empty");
             return;
-        }else if (this.app.containsProject(newProjectName)){
+        } else if (this.app.containsProject(newProjectName)) {
             alert("Project name already exists");
             return;
         }
@@ -143,7 +143,7 @@ export class UI {
         console.log("here we will delete");
         const index = evt.target.closest("button").dataset.index;
 
-        if(index == 0){
+        if (index == 0) {
             alert("Cannot remove default project: Inbox");
             return;
         }
@@ -154,7 +154,7 @@ export class UI {
         this.clearProjectBoard();
         this.updateProjectBoard();
 
-    } 
+    }
 
     displayProjects(projectName, projectIndex) {
 
@@ -182,7 +182,7 @@ export class UI {
 
         //const rightDiv 
         const rightDiv = document.createElement('div');
-        rightDiv.classList.add('right-div');        
+        rightDiv.classList.add('right-div');
 
         //xbutton element
         const xbtn = document.createElement('button');
@@ -209,7 +209,7 @@ export class UI {
     }
 
     setAsCurrentProject = (evt) => {
-        
+
         const index = evt.target.closest("li").dataset.index;
 
         this.app.setCurrentProjectIndex(index);
@@ -234,7 +234,7 @@ export class UI {
         const todoBoard = document.querySelector(".todo-board");
         const title = document.createElement("h2");
         const tspan = document.createElement("span");
-        
+
         const icon = document.createElement("i");
         icon.classList.add("fa");
         icon.classList.add("fa-list");
@@ -248,25 +248,35 @@ export class UI {
         todoBoard.appendChild(this.displayTodoList(this.app.getCurrentProject()));
         //append form
         todoBoard.appendChild(this.createTodoForm());
-        
+
+        //event listeners
         const addTodoBtn = document.querySelector(".todo-add-btn");
         addTodoBtn.addEventListener("click", this.addNewTask);
+
+        //task urgent
+        const taskStar = document.querySelectorAll(".toggle-star");
+        taskStar.forEach((button) => { button.addEventListener("click", this.toggleStarTask) });
+
+        //edit task
+        const editBtn = document.querySelectorAll(".todo-edit");
+        editBtn.forEach((button) => { button.addEventListener("click", this.editTaskDialog) });
     }
 
     displayTodoList = (project) => {
         const taskList = project.getTaskList();
         const ul = document.createElement("ul");
 
-        taskList.forEach((task) => ul.appendChild(this.generateTodoItems(task)));
+        taskList.forEach((task, index) => ul.appendChild(this.generateTodoItems(task, index)));
         ul.classList.add("todo-listing");
 
         return ul;
     }
 
-    generateTodoItems = (task) => {
+    generateTodoItems = (task, taskIndex) => {
         console.log(task);
         const li = document.createElement("li");
-        li.classList.add("todo-li")
+        li.classList.add("todo-li");
+        li.dataset.index = taskIndex;
 
         const checkbox = document.createElement("input");
         checkbox.setAttribute("type", "checkbox");
@@ -289,14 +299,16 @@ export class UI {
         due.classList.add("todo-date");
         dd.classList.add("dd");
         dd.textContent = task.getDueDate();
-        due.textContent = "Due: ";
+        due.textContent = "due: ";
         due.appendChild(dd);
 
         //star
         const starDiv = document.createElement("div");
         const star = document.createElement('i');
-        star.classList.add('fa-regular');
+        const starClass = (task.getPriority() === "normal") ? 'fa-regular' : 'fa-solid';
+        star.classList.add(starClass);
         star.classList.add('fa-star');
+        star.classList.add('toggle-star');
         starDiv.appendChild(star);
 
         //edit
@@ -304,13 +316,14 @@ export class UI {
         const edit = document.createElement('i');
         edit.classList.add('fas');
         edit.classList.add('fa-edit');
+        edit.classList.add('todo-edit');
         editDiv.appendChild(edit);
 
         //close
         const closeDiv = document.createElement("div");
         const close = document.createElement('i');
-        close.classList.add('fa-regular');
-        close.classList.add('fa-circle-xmark');
+        close.classList.add('fas');
+        close.classList.add('fa-times');
         closeDiv.appendChild(close);
 
         li.appendChild(checkbox);
@@ -326,24 +339,21 @@ export class UI {
 
     addNewTask = (evt) => {
         evt.preventDefault();
-        console.log(evt);
-        console.log("add a task");
 
         const currentProjectIndex = this.app.getCurrentProjectIndex();
-        console.log(currentProjectIndex);
 
         const title = document.querySelector(".todo-newtitle").value;
         const desc = document.querySelector(".todo-newdesc").value;
         const due = document.querySelector(".todo-newdate").value;
 
-        const newTask = new Task(title,desc,format(new Date(due), "MM/dd/yyyy"),"normal");
+        const newTask = new Task(title, desc, format(new Date(due), "MM/dd/yyyy"), "normal");
 
         const currentProject = this.app.getProject(currentProjectIndex);
         currentProject.addTask(newTask);
 
         this.saveStorage();
         this.clearTodoBoard();
-        this.updateTodoBoard()
+        this.updateTodoBoard();
 
     }
 
@@ -383,10 +393,117 @@ export class UI {
         form.appendChild(newDesc);
         form.appendChild(newDate);
         form.appendChild(btn);
-        console.log(form);
 
         return form;
     }
+
+    toggleStarTask = (evt) => {
+        evt.stopPropagation();
+        const index = evt.target.closest("li").dataset.index;
+        const project = this.app.getCurrentProject();
+        const task = project.getTaskList()[index];
+        task.toggleUrgency();
+
+        this.saveStorage();
+        this.clearTodoBoard();
+        this.updateTodoBoard();
+    }
+
+    editTaskDialog = (evt) => {
+        evt.stopPropagation();
+        const taskIndex = evt.target.closest("li").dataset.index;
+        const project = this.app.getCurrentProject();
+        const task = project.getTaskList()[taskIndex];
+
+        const modal = document.querySelector(".modal");
+        const overlay = document.querySelector(".overlay");
+        const editBtn = document.querySelector(".edit-task");
+        const cancelBtn = document.querySelector('.cancel-edit');
+
+        const titleInput = document.querySelector(".todo-edit-title");
+        const descInput = document.querySelector(".todo-edit-desc");
+        const dateInput = document.querySelector(".todo-edit-date");
+
+        titleInput.value = task.getTitle();
+        descInput.value = task.getDescription();
+        dateInput.value = format(new Date(task.getDueDate()), "yyyy-MM-dd");
+
+        console.log(task.getDueDate());
+
+        modal.classList.remove("hidden");
+        overlay.classList.remove("hidden");
+
+        //event on cancel
+        cancelBtn.addEventListener("click", () => {
+            this.clearDialogInputs();
+            this.closeDialog();
+        });
+
+
+        editBtn.addEventListener("click", (e) => { 
+            e.stopPropagation(); 
+            e.preventDefault();
+            this.editTask(taskIndex); 
+        }, {once: true}); //very important
+
+    }
+
+    editTask = (taskIndex) => {
+        console.log(taskIndex)
+        const newTitle = document.querySelector(".todo-edit-title").value;
+        const newDesc = document.querySelector(".todo-edit-desc").value;
+        const newDate = document.querySelector(".todo-edit-date").value;
+
+        /*
+        if (newTitle === "" && newDesc === "" && newDate === "") {
+            alert("Please input something");
+            return;
+        }*/
+
+        console.log(newTitle);
+        console.log(newDesc);
+        console.log(newDate);
+
+        const project = this.app.getCurrentProject();
+        const task = project.getTaskList()[taskIndex];
+
+        console.log(project);
+        console.log(task);
+        console.log("setting edits to: "+taskIndex);
+
+        if (newTitle != "") { task.setTitle(newTitle); }
+        if (newDesc != "") { task.setDescription(newDesc); }
+        if (newDate != "") { 
+            task.setDueDate(format(new Date(newDate), "MM/dd/yyyy")); 
+        }
+
+        this.clearDialogInputs();
+        this.closeDialog();
+
+        this.saveStorage();
+        this.clearTodoBoard();
+        this.updateTodoBoard(); 
+    }
+
+    clearDialogInputs = () => {
+        const inputs = document.querySelectorAll("input");
+        inputs.forEach((inputBox) => inputBox.value = "");
+    }
+
+    closeDialog = () => {
+
+        const modal = document.querySelector(".modal");
+        const overlay = document.querySelector(".overlay");
+        modal.classList.add("hidden");
+        overlay.classList.add("hidden");
+    }
+
+    removeEditListeners = () => {
+        const editBtn = document.querySelectorAll(".todo-edit");
+        editBtn.forEach((button) => { button.removeEventListener("click", this.editTaskDialog) });
+        console.log("REMOVE LISTENER");
+    }
+
 
 }
 

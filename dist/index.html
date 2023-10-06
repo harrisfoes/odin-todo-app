@@ -12,6 +12,17 @@
 </head>
 
 <body>
+    <div class="modal-container">
+    <section class="modal hidden">
+        <h2>Edit Task</h2>
+        <input type="text" placeholder="Title" required class="todo-edit-title">
+        <input type="text" placeholder="Edit description" required class="todo-edit-desc">
+        <input type="date" name="date" id="date" class="todo-edit-date">
+        <button class="edit-task">Edit Task</button>
+        <button class="cancel-edit">Cancel</button>
+    </section>
+    <div class="overlay hidden"></div>
+    </div>
 
     <div class="banner">
         <h1 class="banner-title">
@@ -27,8 +38,9 @@
         </div>
 
         <div class="todo-board">
-            <ul class="todo-listing">
-            </ul>
+
+            <!-- ul class="todo-listing">
+            </ul -->
                 <!--li class="todo-li">
                     <input type="checkbox" name="todo-check" id="todo-check">
                     <div class="todo-title">Eat a Sandwich</div>

@@ -3,7 +3,7 @@ export class Task {
         this.title = title;
         this.description = description;
         this.dueDate = dueDate;
-        this.priority = priority;
+        this.priority = "normal";
         this.status = "pending";
     }
 
@@ -39,8 +39,17 @@ export class Task {
         return this.description;
     }
 
+    getPriority = () => {
+        return this.priority;
+    }
+
     getDueDate = () => {
         return this.dueDate;
+    }
+
+    toggleUrgency = () => {
+        const priority = this.priority;
+        this.priority = (priority === "normal") ? "urgent" : "normal";
     }
 }
 
