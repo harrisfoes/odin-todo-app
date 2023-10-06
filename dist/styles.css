@@ -21,6 +21,10 @@ input[type=text], input[type=date] {
     font-family:inherit;
 }
 
+.todo-newdesc{
+    width:400px;
+}
+
 button {
     margin: 6px;
     padding: 8px 16px;
@@ -167,6 +171,10 @@ body {
 
 h2 span {
     margin-left:30px;
+}
+
+.strike {
+    text-decoration:line-through;
 }
 
 /*modal*/

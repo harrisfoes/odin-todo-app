@@ -58,7 +58,6 @@ export class UI {
         addProjectBtn.addEventListener("click", this.addNewProject);
 
         const projectBtns = document.querySelectorAll('.project-li');
-        console.log(projectBtns);
 
         projectBtns.forEach((button) => {
             button.addEventListener('click', this.setAsCurrentProject);
@@ -268,7 +267,7 @@ export class UI {
 
         //finish task
         const checkBox = document.querySelectorAll(".todo-check");
-        checkBox.forEach((button) => { button.addEventListener("change", this.deleteTask)});
+        checkBox.forEach((button) => { button.addEventListener("change", this.markComplete)});
     }
 
     displayTodoList = (project) => {
@@ -282,7 +281,9 @@ export class UI {
     }
 
     generateTodoItems = (task, taskIndex) => {
-        console.log(task);
+        //console.log(task);
+        const taskStatus = task.getStatus();
+
         const li = document.createElement("li");
         li.classList.add("todo-li");
         li.dataset.index = taskIndex;
@@ -337,13 +338,41 @@ export class UI {
         close.classList.add('todo-delete');
         closeDiv.appendChild(close);
 
-        li.appendChild(checkbox);
-        li.appendChild(title);
-        li.appendChild(desc);
-        li.appendChild(due);
-        li.appendChild(starDiv);
-        li.appendChild(editDiv);
-        li.appendChild(closeDiv);
+        //complete
+        /*
+        const completeDiv = document.createElement("div");
+        const complete = document.createElement('i');
+        complete.classList.add('fa-solid');
+        complete.classList.add('fa-check-double');
+        complete.classList.add('todo-delete');
+        completeDiv.appendChild(complete);
+        */
+
+        if(taskStatus === "pending"){
+
+            li.appendChild(checkbox);
+            li.appendChild(title);
+            li.appendChild(desc);
+            li.appendChild(due);
+            li.appendChild(starDiv);
+            li.appendChild(editDiv);
+            li.appendChild(closeDiv);
+        }
+        else if (taskStatus === "completed"){
+
+            title.classList.add("strike");
+            desc.classList.add("strike");
+            due.classList.add("strike");
+
+            checkbox.setAttribute("checked", "true");
+            checkbox.setAttribute("disabled", "true");
+            li.appendChild(checkbox);
+
+            li.appendChild(title);
+            li.appendChild(desc);
+            li.appendChild(due);
+            li.appendChild(closeDiv);
+        }
 
         return li;
     }
@@ -506,6 +535,19 @@ export class UI {
         this.updateTodoBoard();
     }
 
+    markComplete = (evt) => {
+        console.log("complete");
+        evt.stopPropagation();
+        const index = evt.target.closest("li").dataset.index;
+        const project = this.app.getCurrentProject();
+        const task = project.getTaskList()[index];
+        console.log(task);
+        task.completeTask();
+
+        this.saveStorage();
+        this.clearTodoBoard();
+        this.updateTodoBoard();
+    }
 }
 
 

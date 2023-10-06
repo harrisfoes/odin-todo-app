@@ -47,6 +47,10 @@ export class Task {
         return this.dueDate;
     }
 
+    getStatus = () => {
+        return this.status;
+    }
+
     toggleUrgency = () => {
         const priority = this.priority;
         this.priority = (priority === "normal") ? "urgent" : "normal";
