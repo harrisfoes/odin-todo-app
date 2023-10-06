@@ -8,24 +8,20 @@ Modular JavaScript design
 Local storage
 Make use of SOLID principles
 
-URL:
-
-
-
+URL: https://harrisfoes.github.io/odin-todo-app/
 
 # Project Specifications
 A Todo webapp  where the user can list projects and list down tasks associated with that project
 Every task has a title, description, due date and priority
 
-# First Milestone: Make it work in the console.
-Users can add new projects, as well as view, edit and delete them.
-Users can add tasks to projects, as well as view, edit and delete them.
-# Second milestone - make it work in localStorage
-All tasks are stored in localStorage.
-# Third milestone - UI
+# Project Post-mortem
+This was the toughest project in the course so far, which mirrors with a lot of what other students said.
+It took me three weeks of on-and-off work
+The concepts of using Model - View - Controller thinking in the implementation helped a lot in structuring the code
+There are things I could still improve but overall I'm happy with how this turned out
 
-Tasklist:
-- [x] Tasks
+# Tasklist:
+## Tasks
 - [x] enable viewing
 - [x] enable edits
 - [x] enable setToDone
@@ -35,12 +31,14 @@ Tasklist:
 - [x] enable deletion from the list
 - [x] enable adding tasks
 - [x] enable deleting tasks
-- [x] Local Storage
+
+## Local Storage
 - [x] learn about and try out local storage
 - [x] JSON functions stringify and parse
 - [x] implement storage on the local storage
 - [x] implement retrieval on the local storage
-- [ ] UI
+
+## UI
 - [x] Integrate css style
 - [x] create navbar, sidebar, contentbar
 - [x] Project UI
@@ -63,15 +61,14 @@ Tasklist:
 - [x] when clicked, remove old highlight
 - [x] highlight current project by adding new class
     
-
-- [ ] Add tasks for inbox
+# Add tasks for inbox 
  -  [x] mockup how display will look like
  -  [x] mockup for task listing
  -  [x] mockup for inputs
  - [x] create input display with add
  - [x] record tasks on inbox for now
  - [x] figure out dates
- - [ ] UI for project
+ - [x] UI for project
  - [x] retrieve tasks based on currentProject
  - [x] parse tasks from localStorage
  - [x] title
@@ -82,7 +79,7 @@ Tasklist:
  - [x] delete btn
  - [x] edit functionality
  - [x] urgent functionality
- - [ ] delete functionality
- - [ ] item ticked off
+ - [x] delete functionality
+ - [x] item ticked off
  - [x] Open dialog box with form
 
