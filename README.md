@@ -80,10 +80,9 @@ Tasklist:
  - [x] edit btn
  - [x] urgent btn
  - [x] delete btn
- - [ ] edit functionality
+ - [x] edit functionality
  - [x] urgent functionality
  - [ ] delete functionality
- - [ ] check bugs in get/setcurrentProject
+ - [ ] item ticked off
  - [x] Open dialog box with form
- - [ ] Learn about date function -- toDate, isToday, isThisWeek, subDays
 

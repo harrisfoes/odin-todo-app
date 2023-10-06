@@ -94,6 +94,7 @@ export class UI {
         form.setAttribute("action", "#");
 
         const projectInput = document.createElement("input");
+        projectInput.setAttribute("type", "text");
         projectInput.setAttribute("placeholder", "Add Project");
         projectInput.setAttribute("required", "");
         projectInput.classList.add("project-item");
@@ -260,6 +261,14 @@ export class UI {
         //edit task
         const editBtn = document.querySelectorAll(".todo-edit");
         editBtn.forEach((button) => { button.addEventListener("click", this.editTaskDialog) });
+
+        //delete
+        const deleteBtns = document.querySelectorAll(".todo-delete");
+        deleteBtns.forEach((button) => { button.addEventListener("click", this.deleteTask)});
+
+        //finish task
+        const checkBox = document.querySelectorAll(".todo-check");
+        checkBox.forEach((button) => { button.addEventListener("change", this.deleteTask)});
     }
 
     displayTodoList = (project) => {
@@ -282,6 +291,7 @@ export class UI {
         checkbox.setAttribute("type", "checkbox");
         checkbox.setAttribute("name", "todo-check");
         checkbox.setAttribute("id", "todo-check");
+        checkbox.classList.add("todo-check");
 
         //title
         const title = document.createElement("div");
@@ -324,6 +334,7 @@ export class UI {
         const close = document.createElement('i');
         close.classList.add('fas');
         close.classList.add('fa-times');
+        close.classList.add('todo-delete');
         closeDiv.appendChild(close);
 
         li.appendChild(checkbox);
@@ -454,22 +465,8 @@ export class UI {
         const newDesc = document.querySelector(".todo-edit-desc").value;
         const newDate = document.querySelector(".todo-edit-date").value;
 
-        /*
-        if (newTitle === "" && newDesc === "" && newDate === "") {
-            alert("Please input something");
-            return;
-        }*/
-
-        console.log(newTitle);
-        console.log(newDesc);
-        console.log(newDate);
-
         const project = this.app.getCurrentProject();
         const task = project.getTaskList()[taskIndex];
-
-        console.log(project);
-        console.log(task);
-        console.log("setting edits to: "+taskIndex);
 
         if (newTitle != "") { task.setTitle(newTitle); }
         if (newDesc != "") { task.setDescription(newDesc); }
@@ -491,19 +488,23 @@ export class UI {
     }
 
     closeDialog = () => {
-
         const modal = document.querySelector(".modal");
         const overlay = document.querySelector(".overlay");
         modal.classList.add("hidden");
         overlay.classList.add("hidden");
     }
 
-    removeEditListeners = () => {
-        const editBtn = document.querySelectorAll(".todo-edit");
-        editBtn.forEach((button) => { button.removeEventListener("click", this.editTaskDialog) });
-        console.log("REMOVE LISTENER");
-    }
+    deleteTask = (evt) => {
+        console.log("delete");
+        evt.stopPropagation();
+        const index = evt.target.closest("li").dataset.index;
+        const project = this.app.getCurrentProject();
+        project.deleteTask(index);
 
+        this.saveStorage();
+        this.clearTodoBoard();
+        this.updateTodoBoard();
+    }
 
 }
 

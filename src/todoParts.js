@@ -1,5 +1,5 @@
 export class Task {
-    constructor(title,description,dueDate,priority){
+    constructor(title,description,dueDate){
         this.title = title;
         this.description = description;
         this.dueDate = dueDate;
@@ -65,8 +65,12 @@ export class Project {
 
     deleteTask = (taskIndex) => {
         //remove task based on index
-        this.taskList = this.taskList.filter(index => {
-            return index != taskIndex;
+        console.log("delete222");
+        const taskName = this.taskList[taskIndex].getTitle();
+        console.log(taskName);
+
+        this.taskList = this.taskList.filter(name => {
+            return name.getTitle() !== taskName;
         });
     }
 
